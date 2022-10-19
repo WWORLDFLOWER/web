@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <h2>{{message}}</h2>
+        <h3 v-show="loading">loading(v-show)</h3>
+        <h3 v-if="loading">loading(v-if)</h3>
+
+        <!-- 查看 devtools ==> element(元素) 的變化 -->
+
+
+    </div>
+    <div id="temp"></div>
+    <div id="app2"></div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                message: 'hello',
+                score: 0,
+                loading: true,
+            },
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="https://unpkg.com/vue@2"></script>
+    <link rel="stylesheet" href=""> <!--linked css-->
+    <style>
+        
+    </style>  <!--embedded css-->
+</head>
+<body>
+
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <button @click="count+=1">add</button>
+        <h3>new Vue() ==> {{count}}</h3>
+        <hr>
+
+        <counter :init="count"></counter>
+
+        <!-- counter 組件的初值由 new Vue() 取得，所以在上層(HTML DOM template)定義屬性 -->
+    </div>
+
+
+    <script>
+        Vue.component('counter',{
+            props:['init'],
+            data(){
+                return{
+                    count: this.init,
+                }
+            },
+            template:`
+                <div>
+                    <button @click="count+=1">add</button>
+                    <h3>new Vue() ==> {{count}}</h3>
+                </div>
+            `, 
+        })
+
+        let vm = new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                count: 0,
+            },
+            
+
+            methods:{  //函數 "大部分" 放這裡
+            
+            },
+        })
+        
+    </script>
+</body>
+</html>
+
+<!-- <form>
+    <input type="text">
+    <button>submit</button>
+</form>
+<ol>
+    <li></li>
+</ol> -->

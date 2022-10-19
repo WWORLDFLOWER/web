@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="https://unpkg.com/vue@2"></script>
+    <link rel="stylesheet" href=""> <!--linked css-->
+    <style>
+        
+    </style>  <!--embedded css-->
+</head>
+<body>
+    <!-- 沒有『直接』關係的組件要如何溝通?
+    1.簡單的間接關係:將會影響彼此的值放在 new Vue() -- 41_component_沒有直接關係的組件溝通1.html
+    2. event bus -- 本程式
+        透過共同的 event bus 
+        - 一個組件發出自訂事件: bus.$emit('自訂事件', 值1, 值2, ...)
+        - 另一個組件聆聽該事件: bus.$on('該事件', () => {})
+    3. Vuex(狀態管理) -- 43_component_沒有直接關係的組件溝通3.html -->
+
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <my-button></my-button>
+        <my-counter></my-counter>
+    </div>
+
+
+    <script>
+        const bus = new Vue()   //建立 event bus
+
+        Vue.component('my-button',{
+            template:`
+                <button @click="clicked">add</button>
+            `, 
+            methods: {
+                clicked(){
+                    // 1 沒有傳資料
+                    // bus.$emit('xyz')  //xyz 是自訂事件
+
+                    // 2 有傳資料
+                    bus.$emit('xyz', 7)  //xyz 是自訂事件
+                },
+            },
+        })
+
+        Vue.component('my-counter',{
+            data(){
+                return{
+                    count: 0,
+                }
+            },
+            template:`
+                <h3>{{count}}</h3>
+            `, 
+
+            // 在 mounted 的時候聆聽該事件
+            mounted(){
+            // 1 沒有傳資料
+            //     bus.$on('xyz', () => this.count += 1)
+            
+            // 2 有傳資料 
+                bus.$on('xyz', payload => this.count += payload)
+            },
+        })
+
+        let vm = new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+
+            },
+            
+
+            methods:{  //函數 "大部分" 放這裡
+                // 1
+                // makeSync(count){
+                //     this.count = count
+                // },
+
+                // 2 不用寫
+            },
+        })
+        
+    </script>
+</body>
+</html>
+
+<!-- <form>
+    <input type="text">
+    <button>submit</button>
+</form>
+<ol>
+    <li></li>
+</ol> -->

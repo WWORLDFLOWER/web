@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <h2>what did you get in VueJS?</h2>
+            your score: <input type="text" v-model="score">
+
+            <!-- <p v-if="score>=70">pass</p>
+            <p v-else>it's hard to pass.</p> -->
+
+            <p v-if="score<0||score>100">invalid</p>
+            <p v-else-if="score>=70">pass!</p>
+            <p v-else>it's hard to pass.</p>
+
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                message: 'hello',
+                score: 0,
+                loading: true,
+            },
+        })
+
+    </script>
+</body>
+</html>

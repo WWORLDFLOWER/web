@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <img :src="imgURL" :alt="name" @click="action">
+    </div>
+
+
+    <script>
+        // this 在 JS 代表執行當下的外層物件，所以 this 在執行當下才有意義
+        // this 代表什麼跟他的情境(contact)有關 
+
+        /*
+        function test(){
+            console.log(this);
+        }
+
+        呼叫: test()
+        結果: test() //window物件
+        // -------------------------------
+        let man = {
+            name: 'peter',
+            age: 40,
+            sayHello(){
+                console.log(this);
+            },
+        }
+
+        呼叫: man.sayHello()
+        // 結果: man物件
+        // --------------------------------
+        let temp = function(){  // IIFE (Immediately Invoked Function Expression)
+            console.log(this);
+        }
+
+        呼叫: temp()
+        // 結果: window物件
+        // --------------------------------
+        let arrow = () => console.log(this);
+
+        呼叫: arrow()
+        // 結果: window物件
+        // --------------------------------
+        let men = {
+            name: 'peter',
+            age: 40,
+            sayHello: () => console.log(this),
+        }
+
+        呼叫: men.sayHello()
+        // 結果: window物件
+        // --------------------------------
+        // *箭頭函數: 內部的this和外部的this相同
+
+        // ============================================
+        */
+
+        
+        // this 在 vue 代表 vue 物件
+        new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                message: 'hello',
+                colors: ['red','orange','yellow','green','blue','indigo','violet'],
+                imgURL: "https://pic.pimg.tw/moviemoney/1533135018-4208502154_n.jpg",
+                name: "蠟筆小新",
+            },
+            methods:{  //函數 "大部分" 放這裡
+                action(){
+                    // alert(this)
+                    // console.log(this);
+                    // alert(this.colors)
+
+                    // console.log(this.others());
+
+                    // alert(this.$el)
+                    // console.log(this.$el);
+
+                    alert(this.$data.message)
+                },
+                others(){
+                    alert('hello, action function!')
+                },
+                
+
+            },
+        })
+
+    </script>
+</body>
+</html>

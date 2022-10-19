@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Slider use jQuery</title>
+	<link rel="stylesheet" href="./css/style.css">
+	<style>
+		*{
+			margin: 0;
+		}
+		.area{
+			height: 600px;
+			display: none;
+		}
+		.area p{
+			font: bold 200px Calibri;
+			text-align: center;
+			line-height: 600px;
+		}
+		.area:nth-child(1){
+			background: #731DD8;
+		}
+		.area:nth-child(2){
+			background: #48A9A6;
+		}
+		.area:nth-child(3){
+			background: #E4DFDA;
+		}
+		.area:nth-child(4){
+			background: #D4B483;
+		}
+		.area:nth-child(5){
+			background: #C1666B;
+		}
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		$(function () {
+
+			let showHeight = 150
+
+			$('.area').css({
+				display: 'block',
+				opacity: 0,
+			})
+
+			$(window).on('scroll',function(){
+				$('.area').each(function(){
+					let setThis = $(this)
+					let areaTop = setThis.offset().top
+					// console.log(areaTop);
+
+					if($(window).scrollTop() >= (areaTop + showHeight) - $(window).height()){
+						setThis.stop().animate({
+							opacity: 1,
+						},500)
+					}else{
+						setThis.stop().animate({
+							opacity: 0,
+						},500)
+					}
+				})
+			})
+		})
+	</script>
+</head>
+<body>
+	<div class="area"><p>1</p></div>
+	<div class="area"><p>2</p></div>
+	<div class="area"><p>3</p></div>
+	<div class="area"><p>4</p></div>
+	<div class="area"><p>5</p></div>
+</body>
+
+</html>

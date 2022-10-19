@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            // let theText = $('h2').text()  //getter
+            // alert(theText)
+
+            $('#box p').text(`text to set as the content`)  //setter
+
+            $('p').html(`<span style="color:red;">Hello</span>`) //全部的p標籤
+
+            $('p').not('#box p').html(`<span style="color:red;">Hello</span>`)     // 全部的 P 標籤(除了 #box 裡面的 P)
+        })
+    </script>
+</head>
+<body>
+
+    <h2>Lorem ipsum dolor sit amet.</h2>
+    <p>Lorem ipsum dolor sit amet.</p>
+    <div id="box">
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Nobis quos non alias ea.</p>
+        <p>Ipsa nobis enim rem vero.</p>
+        <p>Quam repudiandae nostrum dolores quisquam.</p>
+    </div>
+    <p>Lorem ipsum dolor sit amet.</p>
+    <p>Nulla veritatis delectus aut eius?</p>
+    <p>Ex iste recusandae iure nesciunt!</p>
+    <p>Ducimus perspiciatis quia repudiandae dolorem.</p>
+
+
+</body>
+</html>

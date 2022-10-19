@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <!-- <img src="https://pic.pimg.tw/moviemoney/1533135018-4208502154_n.jpg" alt="蠟筆小新"> -->
+        <!-- <img v-bind:src="imgURL" v-bind:alt="name"> -->
+        <img :src="imgURL" :alt="name">
+    
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                message: 'hello',
+                colors: ['red','orange','yellow','green','blue','indigo','violet'],
+                imgURL: "https://pic.pimg.tw/moviemoney/1533135018-4208502154_n.jpg",
+                name: "蠟筆小新",
+            },
+            methods:{  //函數 "大部分" 放這裡
+                
+                
+
+            },
+        })
+
+
+        /*
+        switch(month){
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                days = 31;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                days = 30;
+            default:
+                days = 28; //或 days = 29;
+        }
+        */
+
+    </script>
+</body>
+</html>

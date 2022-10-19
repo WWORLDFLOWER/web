@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台鐵車站出入口基本資料</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<body>
+    <button id="loadButton">load data</button>
+    <p id="result"></p>
+
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url: '../XML_JSON_CSV/StationExit.json',
+                type: 'GET',
+                dataType: 'json',
+                success(res){
+                    // console.log(res);
+                    // console.log(res.StationExits);
+                    // console.log(res.StationExits[0]);
+                    // console.log(res.StationExits[0].StationName);
+                    // console.log(res.StationExits[0].StationName.Zh_tw);
+
+                    // console.log(res.StationExits[0].Exits);
+                    // console.log(res.StationExits[0].Exits[0]);
+                    // console.log(res.StationExits[0].Exits[0].ExitName);
+                    // console.log(res.StationExits[0].Exits[0].ExitName.Zh_tw);
+                    // console.log(res.StationExits[0].Exits[0].ExitPosition.PositionLat);
+                    // console.log(res.StationExits[0].Exits[0].ExitPosition.PositionLon);
+                    
+
+                    // for(let i = 0; i < 5; i++){
+                    //     // for(let i = 0; i < res.StationExits.length; i++)
+                    //     console.log(res.StationExits[0].StationName.Zh_tw);
+                    //     console.log(res.StationExits[0].Exits[0].ExitName.Zh_tw);
+                    //     console.log(res.StationExits[0].Exits[0].ExitPosition.PositionLat);
+                    //     console.log(res.StationExits[0].Exits[0].ExitPosition.PositionLon);
+                    //     console.log('-------------------------------');
+                    // }
+
+                    $('#loadButton').click(function(){
+                        let theData = '' 
+
+                        for(let i = 0; i < res.StationExits.length; i++){
+                            theData += `${res.StationExits[i].StationName.Zh_tw} <br>`
+                            theData += `${res.StationExits[i].Exits[0].ExitName.Zh_tw} <br>`
+                            theData += `${res.StationExits[i].Exits[0].ExitPosition.PositionLat} <br>`
+                            theData += `${res.StationExits[i].Exits[0].ExitPosition.PositionLon} <br>`
+                            theData += `-------------------------------------------- <br>`
+                        }
+
+                        $('#result').append(theData)
+                    })
+
+                },
+            })
+
+            /*=========
+            $.ajax({
+                url: '',  // 要呼叫的網址或檔案
+                type: ,   // GET 或 POST
+                data: ,   // 傳送到 Server 端的資料 
+                dataType: ,   // 預期 Server 端會回傳的資料型態，xml | html | script | json | jsonp | text(csv 或 tsv)
+                success(res){},
+                error(err){},
+                complete(){},
+            })
+            ==========*/
+        })
+    </script>
+</body>
+</html>

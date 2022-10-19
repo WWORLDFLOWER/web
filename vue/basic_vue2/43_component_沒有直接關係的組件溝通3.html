@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="https://unpkg.com/vue@2"></script>
+    <script src="https://unpkg.com/vuex@3"></script>
+    <link rel="stylesheet" href=""> <!--linked css-->
+    <style>
+        
+    </style>  <!--embedded css-->
+</head>
+<body>
+    <!-- 沒有『直接』關係的組件要如何溝通?
+    1.簡單的間接關係:將會影響彼此的值放在 new Vue() -- 41_component_沒有直接關係的組件溝通1.html
+    2. event bus -- 42_component_沒有直接關係的組件溝通2.html
+        透過共同的 event bus 
+        - 一個組件發出自訂事件: bus.$emit('自訂事件', 值1, 值2, ...)
+        - 另一個組件聆聽該事件: bus.$on('該事件', () => {})
+    3. Vuex(狀態管理) -- 本程式 -->
+
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <button @click="addCount">Add</button>
+        <h3>{{count}}</h3>
+    </div>
+
+
+    <script>
+        const store = new Vuex.Store({
+            state: {  // 類似 data
+                count: 0,
+
+                x: 100,
+                y: true,
+                z: new Date(),
+            },
+            mutations: {    // 類似 methods
+                addStoreCount(state){
+                    state.count += 1
+
+                    state.x += 10
+                },
+            },
+            getters: {},
+            actions: {},
+        })
+
+        new Vue({
+
+            store,
+            
+            el: '#app',
+            data: {         //變數放這裡
+                // count: 0,
+            },
+            
+
+            methods:{  //函數 "大部分" 放這裡
+                // addCount(){
+                //     this.count += 1
+                // }
+
+                addCount(){
+                    this.$store.commit('addStoreCount')
+                },
+            },
+            computed: {
+                count(){
+                    return this.$store.state.count
+                },
+            },
+        })
+        
+    </script>
+</body>
+</html>
+
+<!-- <form>
+    <input type="text">
+    <button>submit</button>
+</form>
+<ol>
+    <li></li>
+</ol> -->

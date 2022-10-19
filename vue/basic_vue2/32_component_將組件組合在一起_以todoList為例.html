@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="https://unpkg.com/vue@2"></script>
+    <link rel="stylesheet" href=""> <!--linked css-->
+    <style>
+        ol li{
+            font: 18px Tahoma;
+            background: #abc;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        ol li:hover{
+            background: #cba;
+            cursor: pointer;
+        }
+    </style>  <!--embedded css-->
+</head>
+<body>
+
+    
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <todo-list></todo-list>
+    </div>
+
+
+    <script>
+        Vue.component('todo-item',{
+            props: ['xyz'],
+            template:`
+                <li class="theItem">{{xyz}}</li>
+            `,
+        })
+
+        Vue.component('todo-input',{
+            data(){
+                return{
+                    task: '',
+                }
+            },
+            methods: {
+                submitData(e){
+                    // e.preventDefault();  //取消預設值
+                    
+                    // this.$emit('自訂事件'[,傳值1,傳值2,...])
+                    this.$emit('abc', this.task)
+                    this.task = ''
+                },
+            },
+            template:`
+                <form @submit.prevent="submitData">
+                    <input v-model="task">
+                    <button>submit</button>
+                </form>
+            `,
+        })
+
+        Vue.component('todo-list',{
+            data(){
+                return{
+                    tasks: [],
+                }
+            },
+            methods: {
+                addTask(item){
+                    this.tasks.push(item)
+                },
+                removeTask(index){
+                    this.tasks.splice(index,1)
+                },
+            },
+            template:`
+                <div>
+                    <todo-input @abc="addTask"></todo-input>
+                    <!-- 
+                        下層(todo-input)傳遞到上層(todo-list) 
+                        -下層(todo-input): 發出 $emit('自訂事件')
+                        -上層(todo-list): 使用該事件 「v-on: 自訂事件」或「@該事件」接收資料
+                    -->
+                    <ol>
+                        <todo-item v-for="(task,index) in tasks" :xyz="task" @click.native="removeTask(index)"/>
+                        <!-- 
+                            上層(todo-list)傳遞到下層(todo-item)
+                            -上層(todo-list): 使用「v-bind: 自訂屬性」或「:自訂屬性」
+                            -下層(todo-item): 用 props: ['該屬性'] 接收
+                        -->
+                    </ol>
+                </div>
+            `,
+        })
+
+        let vm = new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                
+            },
+            
+
+            methods:{  //函數 "大部分" 放這裡
+            
+            },
+        })
+        
+    </script>
+</body>
+</html>
+
+<!-- <form>
+    <input type="text">
+    <button>submit</button>
+</form>
+<ol>
+    <li></li>
+</ol> -->

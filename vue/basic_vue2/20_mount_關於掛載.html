@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="../js/vue.js"></script>
+    <link rel="stylesheet" href=""> <!--linked css-->
+    <style></style>  <!--embedded css-->
+</head>
+<body>
+    
+    <!-- 掛載(mount): 將 Vue instance 和 HTML DOM 做連結 -->
+    
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <h3>{{message}}</h3>
+    </div>
+
+
+    <script>
+        // 1
+        // let vm = new Vue({
+        //     el: '#app',
+        //     data: {         //變數放這裡
+        //         message: '',
+        //     },
+        // })
+
+        // 2 先宣告再掛載
+        // let vm = new Vue({
+        //     data: {         //變數放這裡
+        //         message: '',
+        //     },
+        // })
+        // vm.$mount('#app')
+
+        // 3 使用 template 和 HTML DOM 做連結
+        new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                message: 'hello',
+            },
+            // template: `視覺元素(DOM)`,  // 實際上會出現的視覺元素(裡面放標籤用反引號) 
+            template: `
+                <div>
+                    <h3 style=" color:blue">hi</h3>
+                    <img src="../../images/3ducks.png">
+                </div>
+            `,
+        })
+        
+        // methods:{  //函數 "大部分" 放這裡
+            
+        // },
+        
+
+        // computed: {  // 函數也可以放這裡但是放在這裡的函數 "不能傳參數，一定要有傳回值(return)"
+            
+        // },
+        </script>
+</body>
+</html>

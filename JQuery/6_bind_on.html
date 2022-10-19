@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="./js/jquery-3.6.0.js"></script>
+	<script>
+		$(function () {
+			// $('p>span').mouseenter(function(){
+			// 	$(this).addClass('hightlight')
+			// }).mouseleave(function(){
+			// 	$(this).removeClass('hightlight')
+			// })
+
+			// 語法: $(物件).bind('事件',處理函數).bind('事件',處理函數)
+			// $('p>span').bind('mouseenter',function(){
+			// 	$(this).addClass('hightlight')
+			// }).bind('mouseleave',function(){
+			// 	$(this).removeClass('hightlight')
+			// })
+
+			// 語法1: $(物件).on('事件',處理函數)
+			// $('p>span').on('mouseenter',function(){
+			// 	$(this).addClass('hightlight')
+			// }).on('mouseleave',function(){
+			// 	$(this).removeClass('hightlight')
+			// })
+
+			// $('p>span').on('mouseenter mouseleave',function(){
+			// 	$(this).toggleClass('hightlight')
+			// })
+
+			// 用法: $(window).on('resize scroll',function(){})
+
+			// 語法2: $(document).on('事件','物件',處理函數)
+			$(document).on('mouseenter mouseleave','p>span',function(){
+				$(this).toggleClass('hightlight')
+			})
+		});			
+	</script>
+</head>
+
+<body>
+	<p><span>Lorem ipsum dolor sit amet.</span></p>
+</body>
+
+</html>

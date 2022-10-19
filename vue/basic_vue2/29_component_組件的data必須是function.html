@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="https://unpkg.com/vue@2"></script>
+    <link rel="stylesheet" href=""> <!--linked css-->
+    <style>
+        
+    </style>  <!--embedded css-->
+</head>
+<body>
+
+    
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <button @click="count+=1">add</button>
+        <h3>{{count}}</h3>
+        <button @click="count+=1">add</button>
+        <h3>{{count}}</h3>
+        <hr>
+        <counter></counter>
+        <counter></counter>
+        <counter></counter>
+    </div>
+
+
+    <script>
+
+        // global component
+        // Vue.component('組件名稱',{
+        //     ....
+        //     template: `定義視覺元素`,
+        // })
+        // 組件的 data 為什麼必須是 function?
+        // 因為組件可以重複使用，如果 counter 組件有好幾個，他們應該各自運作，所以每次使用變數的時候， data 會臨時建立物件並 return 回去
+
+            Vue.component('counter',{
+                // data: function(){},
+                data(){
+                    return{
+                        count: 0,
+                    }
+                },
+                template:`
+                    <div>
+                        <button @click="count+=1">add</button>
+                        <h3>{{count}}</h3>
+                    </div>
+                `,
+            })
+
+        let vm = new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                count: 0,
+            },
+            
+
+            methods:{  //函數 "大部分" 放這裡
+            
+            },
+            
+            
+
+
+            
+        })
+
+        
+        </script>
+</body>
+</html>

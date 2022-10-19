@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+
+    <!-- HTML DOM template -->
+    <div id="app"> 
+
+        <ul>
+            <!-- <li v-for="color in colors" v-on:click="showColor(color)">{{color}}</li> -->
+            <li v-for="color in colors" @click="showColor(color)">{{color}}</li>
+        </ul>
+    
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                message: 'hello',
+                colors: ['red','orange','yellow','green','blue','indigo','violet'],
+            },
+            methods:{  //函數 "大部分" 放這裡
+                // showColor: function(){},   //ES5
+                showColor(theColor){     //ES6
+                    alert(`your selected: ${theColor}`)
+                },   
+
+            },
+        })
+
+
+        /*
+        switch(month){
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                days = 31;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                days = 30;
+            default:
+                days = 28; //或 days = 29;
+        }
+        */
+
+    </script>
+</body>
+</html>

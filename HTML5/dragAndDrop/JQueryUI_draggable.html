@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery UI -- draggable</title>
+    <style>
+        div{
+            width: 500px;
+            height: 500px;
+            background-color: #ddd;
+        }
+        #drag{
+            width: 70px;
+            height: 70px;
+            /* border-radius: 50%; */
+            background-color: lightgreen;
+            text-align: center;
+            line-height: 70px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#drag').draggable({
+                // axis: 'x',
+                // revert : true, //回到原點
+
+                // 限制拖曳的範圍
+                containment: 'parent',
+                // containment: 'document',
+                // containment: 'window',
+                // containment:[0, 0, 500, 500],
+
+                // start:function(){},
+                start(){
+                    $('#feedback').text('Dagging started.')
+                },
+                drag(){
+                    $('#feedback').text('Dragging.')
+                },
+                stop(){
+                    $('#feedback').text('Dragging stopped.')
+                },
+            })
+            
+        })
+    </script>
+</head>
+<body>
+    <div id="skin">
+        <div id="drag">Drag me</div>
+    </div>
+    <p id="feedback"></p>
+</body>
+</html>

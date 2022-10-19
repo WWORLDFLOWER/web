@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北市旅遊景點</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font: bold 18px 'jf open 粉圓 1.1';
+        }
+        h2{
+            font: bold 18px 'jf open 粉圓 1.1';
+            text-align: center;
+        }
+        .tripLocation{
+            border: 1px solid #ccc;
+            width: 80%;
+            margin: 20px auto;
+        }
+        img{
+            width: 350px;
+            padding: 10px;
+        }
+        .left{
+            /* border: 1px solid red; */
+            width: 30%;
+            float: left;
+        }
+        .right{
+            /* border: 1px solid red; */
+            width: 60%;
+            float: right;
+        }
+        .head{
+            font: bold 24px 'jf open 粉圓 1.1';
+        }
+        .right span{
+            float: right;
+            margin: 0 10px;
+        }
+        hr{
+            clear: both;
+        }
+        .head,.content{
+            margin: 10px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<body>
+    <h2>台北市旅遊景點</h2>
+    <div>
+        <button id="loadButton">Load data</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function(){
+            $('#loadButton').click(function(){
+                $.ajax({
+                    url: '../XML_JSON_CSV/travellocationCHINESE.xml',
+                    dataType: 'xml',
+                    success(res){
+                        // console.log(res);
+
+                        // let Section = $(res).find('Section')
+                        // console.log(Section);
+
+                        // for(let i = 0; i < 5; i++){
+                        $(res).find('Section').each(function(){
+                            let stitle = $(this).find('stitle').text()
+                            let xbody = $(this).find('xbody').text().substr(0,550)
+                            let image = $(this).find('file').find('img:nth-child(1)').text()
+                            let latitude = $(this).find('latitude').text()
+                            let longitude = $(this).find('longitude').text()
+                            // console.log(xbody , '\n');
+
+                            $('#result').append(`
+                                <div class="tripLocation">
+                                    <div class="left">
+                                        <img src="${image}" alt="#">
+                                    </div>
+                                    <div class="right">
+                                        <div class="head">${stitle}</div>
+                                        <div>
+                                            <span>${latitude} | ${longitude}</span>
+                                        </div>
+                                        <hr>
+                                        <div class="content">${xbody}</div>
+                                    </div>
+                                    <div style="clear:both;"></div>
+                                </div>
+                            `)
+                        })
+
+
+                    },
+                })
+            })
+            /*=========
+            $.ajax({
+                url: '',  // 要呼叫的網址或檔案
+                type: ,   // GET 或 POST
+                data: ,   // 傳送到 Server 端的資料 
+                dataType: ,   // 預期 Server 端會回傳的資料型態，xml | html | script | json | jsonp | text(csv 或 tsv)
+                success(res){},
+                error(err){},
+                complete(){},
+            })
+            ==========*/
+        })
+    </script>
+</body>
+</html>

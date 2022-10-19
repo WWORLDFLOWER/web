@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Slider use jQuery</title>
+	<link rel="stylesheet" href="./css/style.css">
+	<script src="./js/jquery-3.6.0.js"></script>
+	<script>
+
+		// $.each(陣列/物件,function(index,value){})
+		// $(陣列/物件).each(function(){})
+
+		$(function () {
+			$('#theButton').click(function(){
+				// let theText = ''
+				// $(':text').each(function(){
+				// 	theText += $(this).val() + ' '
+				// 	// console.log(`${index}:${value}`)
+				// })
+				// $('#feedback').text(theText)
+
+				// $(':text').each(function(index,value){
+				// 	theText += $(this).val() + ' '
+				// 	console.log(`${index}:${value}`)
+				// })
+
+
+				// 判斷是否每個欄位都有輸入
+				let theText = ''
+				let failed = false
+				$(':text').each(function(){
+					if($(this).val() == ''){
+						failed = true
+					}
+				})
+
+				if(failed == true){
+					alert('Fill out al fields.')
+				}else{
+					alert('Thanks for filling out al fields.')
+
+					$(':text').each(function(){
+						theText += $(this).val() + ' '
+					})
+					$('#feedback').text(theText)
+				}
+
+			})
+		})
+	</script>
+</head>
+<body>
+	<p>
+		<input type="text" name="" id="">
+		<input type="text" name="" id="">
+		<input type="text" name="" id="">
+		<button id="theButton">combine</button>
+	</p>
+	<div id="feedback"></div>
+</body>
+
+</html>

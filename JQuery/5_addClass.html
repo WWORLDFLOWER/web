@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .label{
+            font: 18px monospace;
+            width: 70px;
+            float: left;
+            color: steelblue;
+        }
+        .bg{
+            background-color: yellow;
+            font-size: 18px;
+            color: maroon;
+        }
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $(':text').focus(function(){
+                $(':text').addClass('bg')
+            }).blur(function(){
+                $(this).removeClass('bg')
+            })
+
+            $('input[type="email"]').focus(function(){
+                // $(this).css('background-color','yellow')
+                $(this).attr('placeholder','')
+            }).blur(function(){
+                if($(this).val() == ''){
+                    $(this).attr('placeholder','example@icloud.com')
+                }
+            })
+
+            $('label').addClass('label')
+
+
+            $(':submit').click(function(){
+                // $(this).attr('value','please wait...')
+                $(this).val('please wait...')
+            })
+
+            $('textarea').focus(function(){
+                $(this).attr({
+                    rows: 5,
+                    cols: 30,
+                }).addClass('bg')
+            }).blur(function(){
+                $(this).removeAttr('rows cols').removeClass('bg')
+            })
+        })
+
+    </script>
+</head>
+<body>
+
+    <p>
+        <label>name: </label>
+        <input type="text">
+    </p>
+    
+    <p>
+        <label>email: </label>
+        <input type="email" placeholder="your email...">
+    </p>
+
+    <input type="submit" value="Click">
+    <input type="submit" value="Click">
+
+    <p>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+    </p>
+
+
+</body>
+</html>

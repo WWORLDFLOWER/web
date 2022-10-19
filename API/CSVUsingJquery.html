@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV yo table using AJAX(jQuery)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <h2 align="center">CSV yo table using AJAX(jQuery)</h2>
+    <div align="center">
+        <button id="loadButton" class="">load data</button>
+        <p id="result" align="center"></p>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#loadButton').click(function(){
+                $.ajax({
+                    url: '../XML_JSON_CSV/classmate.csv',
+                    dataType: 'text',
+                    success(res){
+                        
+                        // console.log(res);
+                        theData = res.split(/\n|\r\n/)    // match on\n or \r\n
+                        // theData = res.split(/\r?\n\r/)    // match on\n or \r\n
+
+                        tableData = '<table class="table table-bordered table-striped">'
+                            for(let i = 0; i < theData.length; i++){
+                                cellData = theData[i].split(',')   // 如果是 tsv | txt 的檔案，要將 ， 改成 \t
+                                tableData += '<tr>'
+                                    for(let j = 0; j < cellData.length; j++){
+                                        if(i == 0){
+                                            tableData += `<th>${cellData[j]}</th>`
+                                        }else{
+                                            tableData += `<td>${cellData[j]}</td>`
+                                        }
+                                    }
+                                tableData += '<tr>'
+                            }
+                        tableData += '</table>'
+
+                        $('#result').append(tableData)
+                    },
+
+                })
+            })
+
+                    
+
+            /*=========
+            $.ajax({
+                url: '',  // 要呼叫的網址或檔案
+                type: ,   // GET 或 POST
+                data: ,   // 傳送到 Server 端的資料 
+                dataType: ,   // 預期 Server 端會回傳的資料型態，xml | html | script | json | jsonp | text(csv 或 tsv)
+                success(res){},
+                error(err){},
+                complete(){},
+            })
+            ==========*/
+        })
+    </script>
+</body>
+</html>

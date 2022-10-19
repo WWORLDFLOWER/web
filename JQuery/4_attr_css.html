@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label{
+            font: 18px monospace;
+        }
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            // $('input[type="text"]').focus(function(){
+            //     $(this).css('background-color','yellow')
+            // })
+
+            // alert($(':text').css('font')) //13.3333px Arial
+
+            $(':text').focus(function(){
+                // $(this).css('background-color','yellow').css('font-size','18px')
+                $(this).css({
+                    backgroundColor: 'yellow',
+                    fontSize: '18px',
+                    color:'red',
+                })
+            }).blur(function(){
+                $(this).css({
+                    backgroundColor: '#fff',
+                    fontSize: '13.3333px',
+                    color:'#000',
+                })
+            })
+
+            $('input[type="email"]').focus(function(){
+                // $(this).css('background-color','yellow')
+                $(this).attr('placeholder','')
+            }).blur(function(){
+                if($(this).val() == ''){
+                    $(this).attr('placeholder','example@icloud.com')
+                }
+            })
+
+            $('label').css({
+                width: '70px',
+                float:'left',
+                color: 'steelblue',
+            })
+
+            $(':submit').click(function(){
+                // $(this).attr('value','please wait...')
+                $(this).val('please wait...')
+            })
+
+
+            // alert($('textarea').css('font')) //13.3333px monospace
+
+            // $('textarea').focus().blur()
+            // $('textarea').focus(function(){}).blur(function(){})
+            $('textarea').focus(function(){
+                $(this).attr({
+                    rows: 5,
+                    cols: 30,
+                }).css({
+                    backgroundColor: 'yellow',
+                    fontSize: '16px',
+                })
+            }).blur(function(){
+                $(this).attr({
+                    rows: 2,
+                    cols: 20,
+                }).css({
+                    backgroundColor: '#fff',
+                    fontSize: '13.3333px',
+                })
+            })
+        })
+
+    </script>
+</head>
+<body>
+
+    <p>
+        <label>name: </label>
+        <input type="text">
+    </p>
+    
+    <p>
+        <label>email: </label>
+        <input type="email" placeholder="your email...">
+    </p>
+
+    <input type="submit" value="Click">
+    <input type="submit" value="Click">
+
+    <p>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+    </p>
+
+
+</body>
+</html>

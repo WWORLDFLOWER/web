@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <ul>
+            <li v-for="color in colors">{{color}}</li>
+            <br>
+            <li v-for="(color,index) in colors">{{index}}: {{color}}</li>
+        </ul>
+
+        <ul>
+            <li v-for="info in man">{{info}}</li>
+            <br>
+            <li v-for="(info,key) in man">{{key}}: {{info}}</li>
+        </ul>
+    
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                message: 'hello',
+                colors: ['red','orange','yellow','green','blue','indigo','violet'],
+                man: {
+                    name: 'peter',
+                    age: 40,
+                    genger: 'male',
+                    favoriateColor: ['black','white','gray'],
+                    car:{
+                        make: 'BMW',
+                        mode: 'X5',
+                        year: 2021,
+                    },
+                    retired: false,
+                },
+            },
+        })
+
+        for(let i=0; i < 5; i++){}  //存取陣列
+        for(let key in obj){}  //存取物件
+        for(let i in arr){}  //存取array
+
+
+
+    </script>
+</body>
+</html>

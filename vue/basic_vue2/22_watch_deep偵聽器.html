@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="../js/vue.js"></script>
+    <link rel="stylesheet" href=""> <!--linked css-->
+    <style></style>  <!--embedded css-->
+</head>
+<body>
+    
+    <!-- 偵聽器(watch): 大多用來偵聽 date 和 computed 的變化 -->
+    
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <input v-model.number="num.x">
+    </div>
+
+
+    <script>
+
+        let vm = new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                num: {
+                    x: 100,
+                    y: 200,
+                    z: 300,
+                },
+            },
+            // computed: {  // 函數也可以放這裡但是放在這裡的函數 "不能傳參數，一定要有傳回值(return)"
+                
+            // },
+            watch: {
+                // 1 宣告成函數(方法)
+                // 2 宣告成物件
+                num: {
+                    // handler(newValue, oldValue){
+                    //     console.log(`num: ${oldValue} --> ${newValue}`);
+                    // },
+
+                    handler(newValue){
+                        console.log(`num: ${newValue.x}`);
+                    },
+                    immediate: false, // false by default, if true --> 當 Vue instance 一建立(create)好就立刻執行 watch
+                    deep: false, // false by default, if true --> 建下一個程式
+                },
+            },
+        })
+
+        
+        // methods:{  //函數 "大部分" 放這裡
+            
+        // },
+        
+
+        
+        </script>
+</body>
+</html>

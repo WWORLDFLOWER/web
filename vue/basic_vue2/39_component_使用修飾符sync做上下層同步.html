@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="https://unpkg.com/vue@2"></script>
+    <link rel="stylesheet" href=""> <!--linked css-->
+    <style>
+        
+    </style>  <!--embedded css-->
+</head>
+<body>
+
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <h3 style="color:red;">new Vue() ==> {{count}}</h3>
+        <hr>
+
+        <!-- 1 初值由上層傳到下層，下層更新完的結果傳回給上層(前一個程式) -->
+        <!-- <counter :init="count" @child-emit="makeSync"></counter> -->
+        
+        <!-- 2 使用 v-bind 的修飾符 sync -->
+        <!-- <counter v-bind:init.sync="count"></counter> -->
+        <counter :init.sync="count"></counter>
+        
+    </div>
+
+
+    <script>
+        Vue.component('counter',{
+            props: ['init'],
+            data(){
+                return{
+                    count: this.init,
+                }
+            },
+            methods: {
+                sync(){
+                    // 1
+                    // this.$emit('child-emit', this.count)
+
+                    // 2
+                    this.$emit('update:init', this.count)
+                },
+            },
+            template:`
+                <div>
+                    <button @click="count+=1">Add</button>
+                    <button @click="sync">Sync</button>
+                    <h3>counter ==> {{count}}</h3>
+                </div>
+            `, 
+        })
+
+        let vm = new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                count: 0,
+            },
+            
+
+            methods:{  //函數 "大部分" 放這裡
+                // 1
+                // makeSync(count){
+                //     this.count = count
+                // },
+
+                // 2 不用寫
+            },
+        })
+        
+    </script>
+</body>
+</html>
+
+<!-- <form>
+    <input type="text">
+    <button>submit</button>
+</form>
+<ol>
+    <li></li>
+</ol> -->

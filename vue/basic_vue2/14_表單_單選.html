@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="../js/vue.js"></script>
+    <link rel="stylesheet" href=""> <!--linked css-->
+    <style></style>  <!--embedded css-->
+</head>
+<body>
+
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        
+        <!-- <input type="radio" name="gender" value="male" checked> Male
+        <input type="radio" name="gender" value="female"> FeMale
+        <input type="radio" name="gender" value="others"> Others -->
+
+        <input type="radio" v-model="gender" value="male"> Male
+        <input type="radio" v-model="gender" value="female"> FeMale
+        <input type="radio" v-model="gender" value="others"> Others
+
+        <p>{{gender}}</p>
+
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                gender: 'male',
+            },
+            methods:{  //函數 "大部分" 放這裡
+                
+            },
+            computed: {  // 函數也可以放這裡但是放在這裡的函數 "不能傳參數，一定要有傳回值(return)"
+                
+            },
+        })
+
+    </script>
+</body>
+</html>

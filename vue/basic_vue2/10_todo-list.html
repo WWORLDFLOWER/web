@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        ol li{
+            font: 18px Tahoma;
+            background: #abc;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        ol li:hover{
+            background: #cba;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <p>
+            your task: <input v-model="newTask" @keyup.enter="addTask">
+        </p>
+        <ol>
+            <li v-for="task in tasks" @click="removeTask(index)">{{task}}</li>
+        </ol>
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                tasks: [],
+                newTask: '',
+            },
+            methods:{  //函數 "大部分" 放這裡
+                addTask(){
+                    this.tasks.push(this.newTask)
+                    this.newTask = ''
+                },
+                removeTask(index){
+                    this.tasks.splice(index,1)
+                },
+            },
+            computed: {  // 函數也可以放這裡但是放在這裡的函數 "不能傳參數，一定要有傳回值(return)"
+                
+            },
+        })
+
+
+        /*
+        // 函數三部曲: 宣告、定義和呼叫
+        // JS 的函數將宣告和定義寫在一起
+        (1) 沒傳參數，沒有傳回值
+            function temp(){   // 宣告和定義
+                console.log(5);
+            }
+            呼叫: temp()
+
+        (2) 有傳參數，沒有傳回值
+            function temp(n){  // 宣告和定義
+                console.log(n * 5);
+            }
+            呼叫: temp(100)
+
+        (3) 有傳參數，有傳回值
+            function temp(n){  // 宣告和定義
+                console.log(n * 5);
+
+                return true;
+            }
+            呼叫: let ans = temp(100)
+
+        (4) 沒傳參數，有傳回值
+            function temp(){  // 宣告和定義
+                console.log(5);
+
+                return true;
+            }
+            呼叫: let ans = temp()
+        */
+    </script>
+</body>
+</html>

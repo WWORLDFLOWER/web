@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vuex for vue3</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/vuex@4"></script>
+</head>
+<body>
+    <div id="app"> <!--HTML DOM template--> 
+        <button @click="addCount">Add</button>
+        <h3>Vue2 count: {{count}}</h3>
+    </div>
+
+    <script>
+        const {createStore} = Vuex  // 將 global vue 取出來使用
+        const {computed} = Vue  
+        
+        const store = createStore({
+            state(){  // 類似 data,所以這裡的 state 必須是 function
+                return{
+                    count: 0,
+                    
+                    x: 100,
+                    y: true,
+                    z: new Date(),
+                }
+            },
+            mutations: {
+                addStoreCount(state){
+                    state.count += 1
+                },
+            },
+        })
+
+        const App = {
+            setup(){
+                const count = computed(() => store.state.count)
+                const addCount = () => store.commit('addStoreCount')
+
+                return{
+                    addCount,
+                    count,
+                }
+            }
+        }
+
+        
+
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="https://unpkg.com/vue@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+    <link rel="stylesheet" href=""> <!--linked css-->
+    <style>
+        img{
+            width: 200px;
+        }
+        h1{
+            font-size: 18px;
+        }
+        .book{
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 250px;
+            height: 380px;
+            margin: 10px;
+            padding: 10px;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>  <!--embedded css-->
+</head>
+<body>
+
+    
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <div v-for="book in books" class="book">
+            <a :href="book.url">
+                <img :src="book.image" alt="image">
+            </a>
+            <h1>{{checkTitle(book.title)}}</h1>
+            <p>{{book.author}}</p>
+        </div>
+    </div>
+
+
+    <script>
+
+        let vm = new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                books: [],
+            },
+            mounted() {
+                // jquery
+                // $.getJSON('../../XML_JSON_CSV/bookData.json').then(function(res){})
+                // $.getJSON('../../XML_JSON_CSV/bookData.json').then(res => console.log(res))
+                // $.getJSON('../../XML_JSON_CSV/bookData.json').then(res => this.books = res)
+                
+                // axios
+                // axios.get('../../XML_JSON_CSV/bookData.json').then(res => console.log(res))
+                // axios.get('../../XML_JSON_CSV/bookData.json').then(res => console.log(res.data))
+                // axios.get('../../XML_JSON_CSV/bookData.json').then(res => this.books = res.data)
+
+
+                // fetch
+                // fetch('../../XML_JSON_CSV/bookData.json').then(res => console.log(res))
+                // fetch('../../XML_JSON_CSV/bookData.json').then(res => console.log(res.json()))
+                // fetch('../../XML_JSON_CSV/bookData.json').then(res => console.log(res.json())).then(res => console.log(res))
+                fetch('../../XML_JSON_CSV/bookData.json').then(res => res.json()).then(res => this.books = res)
+
+                
+            },
+
+            methods:{  //函數 "大部分" 放這裡
+                checkTitle(theTitle){
+                    return theTitle.slice(0,18)
+                },
+            },
+
+            // 內建物件: Promise 的 then(callback) 的傳回值是 promise 物件
+            // OO.then().then()....
+        })
+        
+        
+        
+        // computed: {  // 函數也可以放這裡但是放在這裡的函數 "不能傳參數，一定要有傳回值(return)"
+            
+        // },
+
+        
+        </script>
+</body>
+</html>

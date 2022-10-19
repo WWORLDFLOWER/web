@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <h2>{{message}}</h2>
+        <button @click="clicked">click me</button>
+
+    </div>
+
+
+    <script>
+        // Vue.createApp({
+        //     data(){
+        //         return {
+        //             message: 'hello',
+        //         }
+        //     },
+        //     methods: {
+        //         clicked(){
+        //             alert(this.message)
+        //         },
+        //     },
+        // }).mount('#app')
+        
+        // composition api
+        const {ref} = Vue    // 2 將 global vue 取出來使用
+
+        // 3 定義 App 這個物件
+        const App = {
+            setup(){
+                const message = ref('Hello, Vue3!')
+
+                // 語法: 
+                // ref(): 任何資料型態，但無法對陣列或物件深層監聽，並且要用 value 來取得資料
+                // reactive(): 只能接受陣列或物件，並可深層監聽，也不需要用 value 來取得資料
+
+                let score = 100;
+                let str = 'ABC';
+
+                // const clicked = () => alert(message.value)
+                const clicked = () => alert(`${message.value} Vue3!`)   // IIFE
+
+                // 4 最後 return 給 HTML DOM template
+                return{
+                    message,   // meaasge: message,
+                    clicked,   // clicked: clicked,
+                }
+
+            },
+        }
+
+        // 1 載入 Vue3 之後<直接從 global vue 的 createApp 內的函數取出來使用，並在 createApp 將前面定義好的 App object 載入，再掛載到 #app
+
+        Vue.createApp(App).mount('#app')
+
+
+        //  IIFE
+        // let ans = function(){}
+        // let ans = () => {}
+
+    </script>
+</body>
+</html>

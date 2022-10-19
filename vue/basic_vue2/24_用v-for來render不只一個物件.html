@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="../js/vue.js"></script>
+    <link rel="stylesheet" href=""> <!--linked css-->
+    <style></style>  <!--embedded css-->
+</head>
+<body>
+    
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <!-- <img src="../../images/foot.gif" alt="icon">
+        <span>about</span>
+        <img src="../../images/open.png" alt="icon">
+        <br>
+
+        <img src="../../images/foot.gif" alt="icon">
+        <span>products</span>
+        <img src="../../images/open.png" alt="icon">
+        <br>
+        
+        <img src="../../images/foot.gif" alt="icon">
+        <span>contact</span>
+        <img src="../../images/open.png" alt="icon">
+        <br>
+        
+        <img src="../../images/foot.gif" alt="icon">
+        <span>nothing</span>
+        <img src="../../images/open.png" alt="icon">
+        <br>
+        
+        <img src="../../images/foot.gif" alt="icon">
+        <span>something</span>
+        <img src="../../images/open.png" alt="icon"> -->
+
+        <template v-for="header in headers">
+            <img src="../../images/foot.gif" alt="icon">
+            <span>{{header}}</span>
+            <img src="../../images/open.png" alt="icon">
+            <br>
+        </template>
+
+    </div>
+
+
+    <script>
+
+        let vm = new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                headers: ['about','products','contact','nothing','something']
+            },
+            
+        })
+        
+        
+        // methods:{  //函數 "大部分" 放這裡
+        
+        // },
+        
+        // computed: {  // 函數也可以放這裡但是放在這裡的函數 "不能傳參數，一定要有傳回值(return)"
+            
+        // },
+
+        
+        </script>
+</body>
+</html>

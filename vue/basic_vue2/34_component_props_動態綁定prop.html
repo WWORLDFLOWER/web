@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="https://unpkg.com/vue@2"></script>
+    <link rel="stylesheet" href=""> <!--linked css-->
+    <style>
+        
+    </style>  <!--embedded css-->
+</head>
+<body>
+
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <!-- 1 -->
+        <!-- <post :the-text="sayHello"></post> -->
+
+        <!-- 2 處理陣列 -->
+        <!-- <post v-for="sayHello in helloArray" :the-text="sayHello"></post> -->
+        
+        <!-- 3 處理(陣列裡的)物件-->
+        <!-- <post v-for="sayHello in helloObject" :the-text="sayHello.hello" :country="sayHello.owner"></post> -->
+        
+        <!-- 3 render (陣列裡的)物件-->
+        <post v-for="sayHello in helloObject" v-bind="sayHello"></post>
+        
+    </div>
+
+
+    <script>
+        Vue.component('post',{
+            // 1, 2
+            // props: ['the-text'],
+            // template:`
+            //     <h3>{{theText}}</h3>
+            // `,  // 使用該屬性的時候一定要用 camelCase
+
+            // 3
+            // props: ['the-text', 'country'],
+            // template:`
+            //     <h3>{{country}}: {{theText}}</h3>
+            // `, 
+
+            // 4
+            props: ['hello', 'owner'],
+            template:`
+                <h3>{{owner}}: {{hello}}</h3>
+            `, 
+        })
+
+        let vm = new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                // 1
+                // sayHello: 'Hello, Props!',
+                
+                // 2 陣列
+                helloArray: ['안녕하세요','こんにちは','bonjour','hallo!','illāc'],
+                
+                // 3,4 (陣列裡的)物件
+                helloObject: [
+                    {hello: '안녕하세요', owner:'Korea'},
+                    {hello: 'こんにちは', owner:'Japan'},
+                    {hello: 'bonjour', owner:'French'},
+                    {hello: 'hallo!', owner:'Germany'},
+                    {hello: 'illāc', owner:'Latin'},
+                ],
+            },
+            
+
+            methods:{  //函數 "大部分" 放這裡
+            
+            },
+        })
+        
+    </script>
+</body>
+</html>
+
+<!-- <form>
+    <input type="text">
+    <button>submit</button>
+</form>
+<ol>
+    <li></li>
+</ol> -->

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="https://unpkg.com/vue@2"></script>
+    <link rel="stylesheet" href=""> <!--linked css-->
+    <style>
+        
+    </style>  <!--embedded css-->
+</head>
+<body>
+
+    <!-- HTML DOM template -->
+    <div id="app"> 
+        <!-- 1, 2 -->
+        <!-- <my-button></my-button> -->
+
+        <!-- 3 -->
+        <my-button @my-click="fromChild"></my-button>
+
+    </div>
+
+
+    <script>
+        Vue.component('my-button',{
+            // 1
+            // template:`
+            //     <button>click me</button>
+            // `, 
+
+            // 2
+            // template:`
+            //     <button @click="clicked">click me</button>
+            // `, 
+            // methods: {
+            //     clicked(){
+            //         alert()
+            //     },
+            // },
+
+            // 3
+            template:`
+                <button @click="clicked">click me</button>
+            `, 
+            methods: {
+                clicked(){
+                    // alert(`hi, child!`)
+
+                    // child 發出自訂事件，但沒有傳參數
+                    // this.$emit('my-click')
+
+                    // child 發出自訂事件，有傳參數
+                    // this.$emit('my-click', 100)
+
+                    // child 發出自訂事件，多個參數
+                    this.$emit('my-click', 100, 200, 300)
+                },
+            },
+        })
+
+        let vm = new Vue({
+            el: '#app',
+            data: {         //變數放這裡
+                
+            },
+            
+
+            methods:{  //函數 "大部分" 放這裡
+                // 沒有傳參數
+                // fromChild(){
+                //     alert(`hello,kitty!`)
+                // },
+
+                // 接收一個資料
+                // fromChild(x){
+                //     alert(`hello,kitty! give me ${x} dollars.`)
+                // },
+
+                // 接收多筆資料
+                fromChild(x ,y ,z){
+                    alert(`hello,kitty! give me ${x} or ${y} or ${z} dollars.`)
+                },
+            },
+        })
+        
+    </script>
+</body>
+</html>
+
+<!-- <form>
+    <input type="text">
+    <button>submit</button>
+</form>
+<ol>
+    <li></li>
+</ol> -->

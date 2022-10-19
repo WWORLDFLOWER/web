@@ -1,0 +1,61 @@
+/* 6_bind + 7_removeclass*/
+
+.hightlight{
+    /* color: yellow; */
+    background-color: yellow;
+}
+
+
+/* 11_texthover */
+.texthover{
+    cursor: pointer;
+}
+
+#theDiv{
+    border: 1px solid #aaa;
+    color: #aaa;
+    padding: 5px;
+    font: 16px Tahoma;
+    background-color: lightgreen;
+    position: absolute;
+    display: none;
+}
+
+/* 12_topmessage */
+#topMessage{
+    background-color: #666;
+    color: #eee;
+    font: 20px Tahoma;
+    padding: 15px;
+    text-align: center;
+    display: none;
+}
+
+#topMessage:hover{
+    cursor: pointer;
+    background-color: darkgreen;
+}
+
+/* 14_animation */
+
+.myPhoto{
+    /* background-color: #aaa; */
+    width: 100px;
+}
+
+#imgBoard{
+    width: 100px;
+    background-color: #aaa;
+    padding: 0px 30px;
+    position: absolute;
+    left: -130px;
+}
+
+/* 24_center */
+
+#inCenter{
+    width: 200px;
+    height: 200px;
+    background-color: #ccc;
+    position: absolute;
+}

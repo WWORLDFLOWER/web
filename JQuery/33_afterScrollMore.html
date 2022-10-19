@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Slider use jQuery</title>
+	<link rel="stylesheet" href="./css/style.css">
+	<style>
+		body{
+			background-image: url(../images/bg100.png);
+		}
+		#skin{
+			height: 2000px;
+		}
+		p{
+			width: 100%;
+			position: fixed;
+			top: 150px;
+			text-align: center;
+		}
+		.toBottom{
+			color: red;
+			font-weight: 900;
+		}
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		$(function () {
+			$(window).scroll(function(){
+				// let scroll_top = $(this).scrollTop()
+				let scroll_top = $(window).scrollTop()
+				$('p>span').text(scroll_top)
+				let document_height = $(document).height()
+				let window_height = $(window).height()
+				
+				if(scroll_top == document_height - window_height){
+					$('p').addClass('toBottom')
+				}else{
+					$('p').removeClass('toBottom')
+				}
+			})
+		})
+	</script>
+</head>
+<body>
+	<div id="skin">
+		<p>scrollTop: <span>0</span></p>
+	</div>
+</body>
+
+</html>
